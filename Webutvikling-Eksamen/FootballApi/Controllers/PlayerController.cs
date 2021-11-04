@@ -23,5 +23,11 @@ namespace FootballApi.Controllers
         {
             return _playerService.GetPlayers();
         }
+
+        [HttpPost]
+        public Player CreatePlayer(Player newPlayer)
+        {
+            return _playerService.CreatePlayer(newPlayer);
+        }
     }
 }

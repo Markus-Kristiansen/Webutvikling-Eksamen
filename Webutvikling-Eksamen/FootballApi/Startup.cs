@@ -45,6 +45,7 @@ namespace FootballApi
             );
 
             services.AddSingleton<PlayerService>();
+            services.AddSingleton<TeamService>();
 
             services.AddCors(
                 options =>

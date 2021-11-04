@@ -21,5 +21,12 @@ namespace FootballApi.Services
             // Husk å bruke try catch hver gang man gjør CRUD mot en database
             return _players.Find(player => true).ToList();
         }
+
+        public Player CreatePlayer(Player newPlayer)
+        {
+            _players.InsertOne(newPlayer);
+
+            return newPlayer;
+        }
     }
 }

@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { Card } from "react-bootstrap";
 import { IPlayer } from "../../interfaces/Interfaces";
 
 const PlayerItem: FC<IPlayer> = ({
@@ -10,11 +11,13 @@ const PlayerItem: FC<IPlayer> = ({
   team,
 }) => {
   return (
-    <article>
-      <h1>{name}</h1>
-      <h3>Age: {age}</h3>
-      <img src={`https://localhost:5001/images/liverpool/${image}`} />
-    </article>
+    <Card>
+      <Card.Body>
+        <Card.Title>{name}</Card.Title>
+        <Card.Text>Age: {age}</Card.Text>
+        <Card.Img src={`https://localhost:5001/images/liverpool/${image}`} />
+      </Card.Body>
+    </Card>
   );
 };
 

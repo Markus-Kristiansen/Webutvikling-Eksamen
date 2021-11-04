@@ -1,15 +1,14 @@
-import "./App.css";
-
 import PlayerList from "./components/player/PlayerList";
 import { PlayerProvider } from "./contexts/player/PlayerContext";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const App = () => {
   return (
-    <div className="App">
+    <>
       <PlayerProvider>
         <PlayerList />
       </PlayerProvider>
-    </div>
+    </>
   );
 };
 
