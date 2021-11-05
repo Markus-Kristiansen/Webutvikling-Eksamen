@@ -11,9 +11,12 @@ export const playerService = (function() {
     };
 
     // Getting a specific player
+    const getPlayerById = async (id: string) => {
+        const res = await axios.get(`https://localhost:5001/player/${id}`);
+        return res.data as IPlayer;
+    };
 
 
-
-    return { getAllPlayers }
+    return { getAllPlayers, getPlayerById }
 
 }())

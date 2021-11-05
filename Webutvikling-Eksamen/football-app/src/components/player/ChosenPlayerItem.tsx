@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Card } from "react-bootstrap";
 import { IPlayer } from "../../interfaces/Interfaces";
 
-const PlayerItem: FC<IPlayer> = ({
+const ChosenPlayerItem: FC<IPlayer> = ({
   id,
   name,
   age,
@@ -22,4 +22,4 @@ const PlayerItem: FC<IPlayer> = ({
   );
 };
 
-export default PlayerItem;
+export default ChosenPlayerItem;

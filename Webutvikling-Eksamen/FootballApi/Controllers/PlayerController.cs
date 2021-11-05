@@ -24,6 +24,22 @@ namespace FootballApi.Controllers
             return _playerService.GetPlayers();
         }
 
+
+        [HttpGet]
+        [Route("/player/name")]
+        public Player GetPlayer(string id)
+        {
+            return _playerService.GetPlayer(id);
+        }
+
+        [HttpGet]
+        [Route("{name}")]
+        public Player GetPlayerByName(string name)
+        {
+            return _playerService.GetPlayer(name);
+        }
+
+
         [HttpPost]
         public Player CreatePlayer(Player newPlayer)
         {
