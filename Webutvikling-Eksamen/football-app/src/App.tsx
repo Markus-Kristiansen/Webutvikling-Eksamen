@@ -1,15 +1,10 @@
-import PlayerList from "./components/player/PlayerList";
-import { PlayerProvider } from "./contexts/player/PlayerContext";
 import "bootstrap/dist/css/bootstrap.min.css";
-import ChosenPlayer from "./components/player/ChosenPlayer";
+import Routing from "./routing/Routing";
 
 const App = () => {
   return (
     <>
-      <PlayerProvider>
-        <PlayerList />
-        <ChosenPlayer />
-      </PlayerProvider>
+      <Routing />
     </>
   );
 };

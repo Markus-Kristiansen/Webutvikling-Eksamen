@@ -29,7 +29,7 @@ export const PlayerProvider: FC = ({ children }) => {
 
   // Everything that uses this context needs to be inside PlayerProvider.
   return (
-    <PlayerContext.Provider value={{ players, player }}>
+    <PlayerContext.Provider value={{ players }}>
       {children}
     </PlayerContext.Provider>
   );
