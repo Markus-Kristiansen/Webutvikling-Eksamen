@@ -2,17 +2,17 @@ import { FC } from "react";
 import { Card } from "react-bootstrap";
 import { IPlayer } from "../../interfaces/Interfaces";
 
-const PlayerCard: FC<IPlayer> = ({
+const PlayerRow: FC<IPlayer> = ({
   id,
-  name,
   age,
+  name,
   image,
-  nationality,
   team,
-  clicked,
+  nationality,
+  teamIcon,
 }) => {
   return (
-    <div onClick={() => clicked(id)}>
+    <div>
       <Card className="m-2 border border-5 rounded">
         <Card.Body className="p-0">
           <Card.Img src={`https://localhost:5001/images/${team}/${image}`} />
@@ -20,6 +20,10 @@ const PlayerCard: FC<IPlayer> = ({
             <Card.Title className="text-center text-dark">{name}</Card.Title>
             <Card.Text className="text-dark">Age: {age}</Card.Text>
             <Card.Text className="text-dark">Team: {team}</Card.Text>
+            <img
+              src={`https://localhost:5001/images/testimages/${teamIcon}`}
+              height="20"
+            />
           </div>
         </Card.Body>
       </Card>
@@ -27,4 +31,4 @@ const PlayerCard: FC<IPlayer> = ({
   );
 };
 
-export default PlayerCard;
+export default PlayerRow;

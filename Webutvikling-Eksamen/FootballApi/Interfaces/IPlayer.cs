@@ -8,5 +8,7 @@ namespace FootballApi.Interfaces
         string Nationality { get; set; }
         string Team { get; set; }
         string Image { get; set; }
+        string Biography { get; set; }
+        string TeamIcon { get; set; }
     }
 }

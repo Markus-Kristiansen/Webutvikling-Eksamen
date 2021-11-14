@@ -17,7 +17,13 @@ export const TeamProvider: FC = ({ children }) => {
     setTeams(res);
   };
 
+  const getTeamById = (id: string) => {
+    return teams.find((team) => team.id === id) as ITeam;
+  };
+
   return (
-    <TeamContext.Provider value={{ teams }}>{children}</TeamContext.Provider>
+    <TeamContext.Provider value={{ teams, getTeamById }}>
+      {children}
+    </TeamContext.Provider>
   );
 };

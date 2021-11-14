@@ -6,15 +6,17 @@ export interface IPlayer {
   image: string;
   nationality?: string;
   team: string;
-
-  clicked: (id: any) => void
+  biography?: string;
+  teamIcon?: string;
 }
 
 export interface IOnePlayer {
   id?: string;
   name: string;
   image: string;
-  team:string
+  team:string;
+  age?: number;
+  nationality: string;
 }
 
 export interface ITeam {

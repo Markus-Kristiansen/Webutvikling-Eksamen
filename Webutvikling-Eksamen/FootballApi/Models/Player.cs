@@ -14,5 +14,7 @@ namespace FootballApi.Models
         public string Nationality { get; set; }
         public string Team { get; set; }
         public string Image { get; set; }
+        public string Biography { get; set; }
+        public string TeamIcon { get; set; }
     }
 }

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IPlayer } from "../interfaces/Interfaces";
+import { IOnePlayer, IPlayer } from "../interfaces/Interfaces";
 
 
 export const playerService = (function() {
@@ -10,6 +10,11 @@ export const playerService = (function() {
         return res.data as IPlayer[];
     };
 
+    const getAllPlayersOne = async () => {
+        const res = await axios.get("https://localhost:5001/player");
+        return res.data as IOnePlayer[];
+    };
+
     // Getting a specific player
     const getPlayerById = async (id: string) => {
         const res = await axios.get(`https://localhost:5001/player/${id}`);
@@ -17,6 +22,6 @@ export const playerService = (function() {
     };
 
 
-    return { getAllPlayers, getPlayerById }
+    return { getAllPlayers, getAllPlayersOne, getPlayerById }
 
 }())
