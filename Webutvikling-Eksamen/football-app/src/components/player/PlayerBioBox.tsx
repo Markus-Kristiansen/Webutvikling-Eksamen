@@ -7,7 +7,7 @@ export type Props = {
 
 const PlayerBioBox: FC<Props> = ({ biography }) => {
   return (
-    <div className="m-auto w-50 h-50 border">
+    <div className="border">
       <p>{biography}</p>
     </div>
   );

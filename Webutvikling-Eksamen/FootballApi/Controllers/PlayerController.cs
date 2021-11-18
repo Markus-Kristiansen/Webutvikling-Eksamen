@@ -45,5 +45,12 @@ namespace FootballApi.Controllers
         {
             return _playerService.CreatePlayer(newPlayer);
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeletePlayer(string id)
+        {
+            _playerService.DeletePlayer(id);
+            return NoContent();
+        }
     }
 }

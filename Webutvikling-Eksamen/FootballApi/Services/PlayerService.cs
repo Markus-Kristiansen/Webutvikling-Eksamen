@@ -59,5 +59,10 @@ namespace FootballApi.Services
 
             return newPlayer;
         }
+
+        public void DeletePlayer(string id)
+        {
+            _players.DeleteOne(delete => delete.Id == id);
+        }
     }
 }

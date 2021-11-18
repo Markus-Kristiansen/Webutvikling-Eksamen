@@ -21,7 +21,11 @@ export const playerService = (function() {
         return res.data as IPlayer;
     };
 
+    const deletePlayerById = (id: string) => {
+        axios.delete(`https://localhost:5001/player/${id}`);
+    };
 
-    return { getAllPlayers, getAllPlayersOne, getPlayerById }
+
+    return { getAllPlayers, getAllPlayersOne, getPlayerById, deletePlayerById }
 
 }())

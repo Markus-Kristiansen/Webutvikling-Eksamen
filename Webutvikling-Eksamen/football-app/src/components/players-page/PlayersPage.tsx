@@ -11,7 +11,7 @@ import SearchBar from "../reusable/SearchBar";
 
 const PlayersPage: FC = () => {
   const { players } = useContext(PlayerContext) as PlayerContextType;
-  const [string, setString] = useState<any>("");
+  const [string, setString] = useState<string>("");
 
   const search = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
