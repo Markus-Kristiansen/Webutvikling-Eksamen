@@ -37,7 +37,7 @@ const TeamDetail = () => {
       </div>
       <div>
         <div>
-          <PlayerList />
+          <PlayerList id={team?.id!} />
         </div>
       </div>
       <ShowTeamList />
