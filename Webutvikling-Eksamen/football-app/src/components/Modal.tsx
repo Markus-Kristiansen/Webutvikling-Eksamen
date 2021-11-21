@@ -10,10 +10,6 @@ const ModalCard = (props: any) => {
     playerService.deletePlayerById(props.id);
   };
 
-  useEffect(() => {
-    deletePlayer();
-  }, []);
-
   return (
     <Modal
       {...props}

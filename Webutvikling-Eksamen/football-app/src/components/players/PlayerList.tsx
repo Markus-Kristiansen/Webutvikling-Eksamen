@@ -1,5 +1,6 @@
 import React, { ChangeEvent, FC, useContext, useState } from "react";
-import { Col, Row } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { PlayerContext } from "../../contexts/player/PlayerContext";
 import { IPlayer } from "../../interfaces/Interfaces";
 import { PlayerContextType } from "../../types/PlayerContextType";
@@ -43,6 +44,26 @@ const PlayerList: FC = () => {
     <Row style={{ backgroundColor: "#f5f5f5" }}>
       <div style={{ display: "flex", marginBottom: 20 }}>
         <SearchBar search={search} placeholder="player" />
+        <Link to="/new-player" style={{ textDecoration: "none" }}>
+          <div
+            style={{
+              backgroundColor: "#3a043f",
+              color: "white",
+              width: 50,
+              height: 50,
+              fontSize: 40,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "end",
+              marginRight: 10,
+              marginTop: 10,
+              borderRadius: 15,
+              textAlign: "center",
+            }}
+          >
+            +
+          </div>
+        </Link>
       </div>
       {searchPlayers()}
     </Row>

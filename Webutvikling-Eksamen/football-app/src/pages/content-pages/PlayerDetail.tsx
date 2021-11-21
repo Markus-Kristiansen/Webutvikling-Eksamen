@@ -1,14 +1,14 @@
-import { url } from "inspector";
 import { FC, useContext, useEffect, useState } from "react";
-import { Card, Carousel } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import PlayerBioBox from "../../components/player/PlayerBioBox";
+
 import { PlayerContext } from "../../contexts/player/PlayerContext";
 import { IPlayer } from "../../interfaces/Interfaces";
 import { playerService } from "../../services/playerService";
 import { PlayerContextType } from "../../types/PlayerContextType";
 import SettingsIcon from "@mui/icons-material/Settings";
 import ModalCard from "../../components/Modal";
+import PlayerCarousel from "../../components/player-detail/PlayerCarousel";
+import PlayerInfoBox from "../../components/player-detail/PlayerInfoBox";
 
 const PlayerDetail: FC = () => {
   const { id } = useParams();
@@ -62,47 +62,14 @@ const PlayerDetail: FC = () => {
           className="hidden-xs col-lg-4 col-md-4 col-sm-12 col-xs-12"
           style={{ border: "2px dotted yellow" }}
         >
-          <div
-            className="border border-bottom-0"
-            style={{
-              backgroundColor: "#f5f5f5",
-              backgroundImage: `url(https://localhost:5001/images/team-images/${player?.teamIcon})`,
-              backgroundRepeat: "no-repeat",
-            }}
-          >
-            <img
-              style={{
-                display: "block",
-                marginLeft: "auto",
-                marginRight: "auto",
-              }}
-              src={`https://localhost:5001/images/teams/${player?.team}/${player?.image}`}
-              alt={`${player?.name}`}
-              height="200px"
-            />
-          </div>
-          <div
-            className="border border-top-0"
-            style={{ backgroundColor: "#F5F5F5", paddingLeft: 10 }}
-          >
-            <p>
-              <b>Age:</b> {player?.age}
-              <br></br>
-              <b>Born in:</b> {player?.nationality}
-            </p>
-
-            <h3>Honours:</h3>
-            <ul
-              style={{
-                listStyleImage: `url(https://localhost:5001/images/team-images/${player?.teamIcon})`,
-              }}
-            >
-              <li>Premier League</li>
-              <li>Champions League</li>
-              <li>Top Scorer Premier League</li>
-              <li>Most Scoring African PL Player</li>
-            </ul>
-          </div>
+          <PlayerInfoBox
+            image={player?.image!}
+            team={player?.team!}
+            teamIcon={player?.teamIcon!}
+            age={player?.age!}
+            nationality={player?.nationality!}
+            name={player?.name!}
+          />
         </div>
         <div
           className="my-auto mx-auto col-lg-8 col-md-8 col-sm-12 col-xs-12"
@@ -155,47 +122,7 @@ const PlayerDetail: FC = () => {
           className="col-lg-8 col-md-8 col-sm-8 col-xs-8"
           style={{ border: "2px dotted yellow", backgroundColor: "gray" }}
         >
-          <h1>Row2 col1</h1>
-          <Carousel variant="dark">
-            <Carousel.Item>
-              <img
-                className="d-block w-50 mx-auto"
-                src={`https://localhost:5001/images/Chelsea%20FC/mason-mount.png`}
-                alt="First slide"
-              />
-              <Carousel.Caption>
-                <h5>First slide label</h5>
-                <p>
-                  Nulla vitae elit libero, a pharetra augue mollis interdum.
-                </p>
-              </Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-              <img
-                className="d-block w-50 mx-auto"
-                src={`https://localhost:5001/images/Liverpool%20FC/mohammed-salah.png`}
-                alt="Second slide"
-              />
-              <Carousel.Caption>
-                <h5>Second slide label</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              </Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-              <img
-                className="d-block w-50 mx-auto"
-                src={`https://localhost:5001/images/Liverpool%20FC/roberto-firmino.png`}
-                alt="Third slide"
-              />
-              <Carousel.Caption>
-                <h5>Third slide label</h5>
-                <p>
-                  Praesent commodo cursus magna, vel scelerisque nisl
-                  consectetur.
-                </p>
-              </Carousel.Caption>
-            </Carousel.Item>
-          </Carousel>
+          <PlayerCarousel team={player?.team!} id={player?.id!} />
         </div>
       </div>
     </div>

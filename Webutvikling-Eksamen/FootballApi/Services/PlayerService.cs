@@ -16,19 +16,7 @@ namespace FootballApi.Services
         {
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
-            //_players = database.GetCollection<Player>(settings.PlayerCollectionName);
-
-            //var collection = database.GetCollection<Team>(settings.TeamCollectionName);
-
             _players = database.GetCollection<Player>(settings.PlayerCollectionName);
-            var docs = _players.Aggregate()
-                                     .Lookup("Team", "Team", "Name", "Team")
-                                     .As<BsonDocument>()
-                                     .ToList();
-            foreach (var doc in docs)
-            {
-                Console.WriteLine(doc.ToJson());
-            }
 
         }
 

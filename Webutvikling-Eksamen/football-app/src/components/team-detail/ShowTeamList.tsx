@@ -26,9 +26,12 @@ const ShowTeamList = () => {
             backgroundColor: "#FFF",
           }}
         >
-          <Link to={`/team-info/${team.id}`} style={{ textDecoration: "none" }}>
+          <Link
+            to={`/team-info/${team.id!}`}
+            style={{ textDecoration: "none" }}
+          >
             <img
-              src={`https://localhost:5001/images/testimages/${team?.image}`}
+              src={`https://localhost:5001/images/image/${team?.image!}`}
               style={{
                 borderRadius: "50%",
 

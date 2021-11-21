@@ -47,7 +47,7 @@ const ShowPlayerList: FC<Props> = ({ id }) => {
                   style={{ textDecoration: "none" }}
                 >
                   <img
-                    src={`https://localhost:5001/images/teams/${player.team}/${player.image}`}
+                    src={`https://localhost:5001/images/image/${player.image}`}
                     alt="player"
                     width="200"
                     style={{

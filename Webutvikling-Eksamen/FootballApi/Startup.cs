@@ -71,13 +71,13 @@ namespace FootballApi
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "FootballApi v1"));
             }
 
-            app.UseHttpsRedirection();
 
             // Let us use static files
-            DefaultFilesOptions newOptions = new DefaultFilesOptions();
-            newOptions.DefaultFileNames.Append("index.html");
+            //DefaultFilesOptions newOptions = new DefaultFilesOptions();
+            //newOptions.DefaultFileNames.Append("index.html");
 
-            app.UseDefaultFiles(newOptions);
+            //app.UseDefaultFiles();
+            app.UseHttpsRedirection();
 
             app.UseStaticFiles();
 

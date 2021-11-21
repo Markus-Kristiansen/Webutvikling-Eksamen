@@ -11,10 +11,11 @@ const TeamImage: FC<Props> = ({ image }) => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        zIndex: 2,
       }}
     >
       <img
-        src={`https://localhost:5001/images/testimages/${image}`}
+        src={`https://localhost:5001/images/image/${image}`}
         height="250px"
         style={{ maxHeight: "70%" }}
         alt="teams-image"

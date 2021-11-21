@@ -19,7 +19,8 @@ const TeamDetail = () => {
       const _team = getTeamById(id);
       setTeam(_team);
     }
-  });
+    console.log(team);
+  }, []);
 
   return (
     <div className="container border border-danger">
@@ -30,7 +31,6 @@ const TeamDetail = () => {
             display: "flex",
             justifyContent: "center",
             backgroundColor: "#f5f5f5",
-            position: "relative",
           }}
         >
           <TeamImage image={team?.image} />

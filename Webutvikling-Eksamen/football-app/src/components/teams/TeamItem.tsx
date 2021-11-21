@@ -13,7 +13,7 @@ const TeamItem: FC<ITeam> = ({ id, name, image, est, city, country }) => {
         >
           <Card.Body className="p-0">
             <Card.Img
-              src={`https://localhost:5001/images/team-images/${image}`}
+              src={`https://localhost:5001/images/image/${image}`}
               height="250px"
               className="py-2"
             />

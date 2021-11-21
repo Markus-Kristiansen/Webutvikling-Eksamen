@@ -1,5 +1,5 @@
 import { createContext, FC, useEffect, useState } from "react";
-import { IOnePlayer, IPlayer } from "../../interfaces/Interfaces";
+import { IPlayer } from "../../interfaces/Interfaces";
 import { playerService } from "../../services/playerService";
 import { PlayerContextType } from "../../types/PlayerContextType";
 
