@@ -6,16 +6,17 @@ export type Props = {
 
 const TeamImage: FC<Props> = ({ image }) => {
   return (
-    <div style={{ margin: "auto" }}>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
       <img
         src={`https://localhost:5001/images/testimages/${image}`}
-        style={{
-          alignItems: "center",
-          margin: "auto",
-          display: "block",
-          minWidth: 0,
-        }}
         height="250px"
+        style={{ maxHeight: "70%" }}
         alt="teams-image"
       />
     </div>

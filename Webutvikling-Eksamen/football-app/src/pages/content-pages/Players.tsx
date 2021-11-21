@@ -1,7 +1,7 @@
-import PlayersPage from "../../components/players-page/PlayersPage";
+import PlayerList from "../../components/players/PlayerList";
 
 const Players = () => {
-  return <PlayersPage />;
+  return <PlayerList />;
 };
 
 export default Players;

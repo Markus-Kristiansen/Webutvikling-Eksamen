@@ -13,16 +13,17 @@ const ShowTeamList = () => {
         <div
           key={key}
           style={{
-            border: "1px solid blue",
+            border: "1px solid #3a043f",
             justifySelf: "center",
             borderRadius: "50%",
             width: 40,
             height: 40,
-            margin: 12,
+            margin: 13,
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             overflow: "hidden",
+            backgroundColor: "#FFF",
           }}
         >
           <Link to={`/team-info/${team.id}`} style={{ textDecoration: "none" }}>
@@ -51,10 +52,7 @@ const ShowTeamList = () => {
         height: 80,
         overflowX: "scroll",
         overflowY: "hidden",
-        border: "2px dotted blue",
-
         alignItems: "center",
-        margin: "auto",
       }}
     >
       {showAllTeams()}

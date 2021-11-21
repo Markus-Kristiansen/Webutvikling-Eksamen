@@ -1,16 +1,13 @@
-import React, { ChangeEvent, FC, useContext, useEffect, useState } from "react";
+import React, { ChangeEvent, FC, useContext, useState } from "react";
 import { Col, Row } from "react-bootstrap";
-
-import { ITeam } from "../../interfaces/Interfaces";
-import TeamTable from "./TeamTable";
 import { TeamContext } from "../../contexts/team/TeamContext";
+import { ITeam } from "../../interfaces/Interfaces";
 import { TeamContextType } from "../../types/TeamContextType";
 import SearchBar from "../reusable/SearchBar";
+import TeamItem from "./TeamItem";
 
-const TeamsPage: FC = () => {
-  //const [data, setData] = useState<IOnePlayer[]>([]);
+const TeamList: FC = () => {
   const { teams } = useContext(TeamContext) as TeamContextType;
-  const [data, setData] = useState<ITeam[]>([]);
   const [string, setString] = useState<any>("");
 
   const search = (e: ChangeEvent<HTMLInputElement>) => {
@@ -19,17 +16,12 @@ const TeamsPage: FC = () => {
     setString(value);
   };
 
-  //const getId = async (id: string) => {
-  //const value = ;
-  //console.log(value);
-  //};
-
   const searchTeams = () => {
     return teams.map((data: ITeam, key: number) => {
       if (data.name.toLowerCase().includes(string.toLowerCase())) {
         return (
           <Col md={6} lg={4} xl={3} key={key}>
-            <TeamTable
+            <TeamItem
               id={data.id}
               name={data.name}
               image={data.image}
@@ -44,14 +36,13 @@ const TeamsPage: FC = () => {
   };
 
   return (
-    <Row>
-      <SearchBar search={search} />
-
-      {/*<input onChange={test} type="text" placeholder={`Search...`} />*/}
-      <p>{string}</p>
+    <Row style={{ backgroundColor: "#f5f5f5" }}>
+      <div style={{ display: "flex", marginBottom: 20 }}>
+        <SearchBar search={search} placeholder="team" />
+      </div>
       {searchTeams()}
     </Row>
   );
 };
 
-export default TeamsPage;
+export default TeamList;

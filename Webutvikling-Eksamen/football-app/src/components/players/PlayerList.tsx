@@ -1,15 +1,12 @@
-import { ChangeEvent, FC, useContext, useState } from "react";
+import React, { ChangeEvent, FC, useContext, useState } from "react";
 import { Col, Row } from "react-bootstrap";
-
-import PlayerTable from "./PlayerTable";
-
 import { PlayerContext } from "../../contexts/player/PlayerContext";
 import { IPlayer } from "../../interfaces/Interfaces";
-
 import { PlayerContextType } from "../../types/PlayerContextType";
 import SearchBar from "../reusable/SearchBar";
+import PlayerItem from "./PlayerItem";
 
-const PlayersPage: FC = () => {
+const PlayerList: FC = () => {
   const { players } = useContext(PlayerContext) as PlayerContextType;
   const [string, setString] = useState<string>("");
 
@@ -27,7 +24,7 @@ const PlayersPage: FC = () => {
       ) {
         return (
           <Col md={6} lg={4} xl={3} key={key}>
-            <PlayerTable
+            <PlayerItem
               id={data.id}
               name={data.name}
               image={data.image}
@@ -43,13 +40,13 @@ const PlayersPage: FC = () => {
   };
 
   return (
-    <div>
-      <div className="d-flex justify-content-center">
-        <SearchBar search={search} />
+    <Row style={{ backgroundColor: "#f5f5f5" }}>
+      <div style={{ display: "flex", marginBottom: 20 }}>
+        <SearchBar search={search} placeholder="player" />
       </div>
-      <Row>{searchPlayers()}</Row>
-    </div>
+      {searchPlayers()}
+    </Row>
   );
 };
 
-export default PlayersPage;
+export default PlayerList;

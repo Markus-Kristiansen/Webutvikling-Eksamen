@@ -28,7 +28,7 @@ const ModalCard = (props: any) => {
       </Modal.Header>
       <Modal.Body>
         <div style={{ display: "flex", justifyContent: "center", margin: 10 }}>
-          <input type="text" placeholder={props.id} style={{ width: 300 }} />
+          <input type="text" placeholder="Update Name" style={{ width: 300 }} />
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <input

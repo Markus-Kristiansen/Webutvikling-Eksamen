@@ -1,7 +1,7 @@
-import TeamsPage from "../../components/teams-page/TeamsPage";
+import TeamList from "../../components/teams/TeamList";
 
 const Teams = () => {
-  return <TeamsPage />;
+  return <TeamList />;
 };
 
 export default Teams;

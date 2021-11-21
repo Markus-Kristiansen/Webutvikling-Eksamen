@@ -66,7 +66,7 @@ const PlayerDetail: FC = () => {
             className="border border-bottom-0"
             style={{
               backgroundColor: "#f5f5f5",
-              backgroundImage: `url(https://localhost:5001/images/testimages/${player?.teamIcon})`,
+              backgroundImage: `url(https://localhost:5001/images/team-images/${player?.teamIcon})`,
               backgroundRepeat: "no-repeat",
             }}
           >
@@ -76,7 +76,7 @@ const PlayerDetail: FC = () => {
                 marginLeft: "auto",
                 marginRight: "auto",
               }}
-              src={`https://localhost:5001/images/${player?.team}/${player?.image}`}
+              src={`https://localhost:5001/images/teams/${player?.team}/${player?.image}`}
               alt={`${player?.name}`}
               height="200px"
             />
@@ -94,7 +94,7 @@ const PlayerDetail: FC = () => {
             <h3>Honours:</h3>
             <ul
               style={{
-                listStyleImage: `url(https://localhost:5001/images/testimages/${player?.teamIcon})`,
+                listStyleImage: `url(https://localhost:5001/images/team-images/${player?.teamIcon})`,
               }}
             >
               <li>Premier League</li>

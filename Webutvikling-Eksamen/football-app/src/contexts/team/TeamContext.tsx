@@ -10,7 +10,7 @@ export const TeamProvider: FC = ({ children }) => {
 
   useEffect(() => {
     getAllTeams();
-  }, []);
+  }, [teams]);
 
   const getAllTeams = async () => {
     const res = await teamService.getAllTeams();
