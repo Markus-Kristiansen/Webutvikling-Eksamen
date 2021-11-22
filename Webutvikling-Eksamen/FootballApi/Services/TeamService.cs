@@ -28,5 +28,23 @@ namespace FootballApi.Services
 
             return newTeam;
         }
+
+        public Team getTeamById(string id)
+        {
+            var result = _teams.Find<Team>(team => team.Id == id);
+
+            return result.FirstOrDefault();
+        }
+
+
+        public void DeleteTeam(string id)
+        {
+            _teams.DeleteOne(delete => delete.Id == id);
+        }
+
+        public void UpdateTeam(Team teamIn)
+        {
+            _teams.ReplaceOne(team => team.Id == teamIn.Id, teamIn);
+        }
     }
 }

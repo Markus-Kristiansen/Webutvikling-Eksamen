@@ -27,5 +27,28 @@ namespace FootballApi.Controllers
         {
             return _teamService.CreateTeam(newTeam);
         }
+
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteTeam(string id)
+        {
+            _teamService.DeleteTeam(id);
+            return NoContent();
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Update(string id, Team teamIn)
+        {
+            var team = _teamService.getTeamById(id);
+
+            if (team == null)
+            {
+                return NotFound();
+            }
+
+            _teamService.UpdateTeam(teamIn);
+            return NoContent();
+        }
+
     }
 }

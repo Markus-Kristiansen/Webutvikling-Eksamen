@@ -1,11 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 import ShowPlayerList from "../../components/team-detail/ShowPlayerList";
 import ShowTeamList from "../../components/team-detail/ShowTeamList";
 import TeamImage from "../../components/team-detail/TeamImage";
 import { TeamContext } from "../../contexts/team/TeamContext";
 import { ITeam } from "../../interfaces/Interfaces";
 import { TeamContextType } from "../../types/TeamContextType";
+import SettingsIcon from "@mui/icons-material/Settings";
 
 const TeamDetail = () => {
   const { id } = useParams();
@@ -20,16 +22,56 @@ const TeamDetail = () => {
       setTeam(_team);
     }
     console.log(team);
-  }, []);
+  });
 
   return (
-    <div className="container border border-danger">
-      <div className="row border border-dark" style={{ height: 300 }}>
+    <div className="container">
+      <div className="row " style={{ height: 300 }}>
         <div
-          className="col-xs-12 col-sm-4 col-md-4 col-lg-4 border border-info"
+          className="d-sm-none"
+          style={{
+            backgroundColor: "#f5f5f5",
+            display: "flex",
+            justifyContent: "end",
+            padding: 5,
+          }}
+        >
+          <Link to={`update-delete-team/${team?.id}`}>
+            <SettingsIcon
+              className="d-block d-sm-none"
+              style={{
+                color: "#3a043f",
+                display: "inline-block",
+              }}
+            />
+          </Link>
+        </div>
+        <div
+          className="d-xs-none"
+          style={{
+            padding: 5,
+
+            display: "flex",
+            justifyContent: "end",
+            backgroundColor: "#f5f5f5",
+          }}
+        >
+          <Link to={`/update-delete-team/${team?.id}`}>
+            <SettingsIcon
+              className="d-none d-sm-block"
+              style={{
+                color: "#3a043f",
+                display: "inline-block",
+              }}
+            />
+          </Link>
+        </div>
+        <div
+          className="col-xs-12 col-sm-4 col-md-4 col-lg-4 "
           style={{
             display: "flex",
             justifyContent: "center",
+            alignItems: "start",
             backgroundColor: "#f5f5f5",
           }}
         >
@@ -37,10 +79,10 @@ const TeamDetail = () => {
         </div>
 
         <div
-          style={{ backgroundColor: "#cfc7db" }}
-          className="col-xs-12 col-sm-8 col-md-8 col-lg-8 border border-success"
+          style={{ height: 300, backgroundColor: "#cfc7db", overflowY: "auto" }}
+          className="col-xs-12 col-sm-8 col-md-8 col-lg-8"
         >
-          Row1 Col2
+          <p>{team?.biography}</p>
         </div>
       </div>
       <div>

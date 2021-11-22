@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { IPlayer } from "../../interfaces/Interfaces";
 
 export type Props = {
   biography?: string;

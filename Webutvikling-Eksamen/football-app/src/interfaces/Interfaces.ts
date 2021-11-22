@@ -10,14 +10,6 @@ export interface IPlayer {
   teamIcon?: string;
 }
 
-export interface IOnePlayer {
-  id?: string;
-  name: string;
-  image: string;
-  team:string;
-  age?: number;
-  nationality: string;
-}
 
 export interface ITeam {
   id?: string;
@@ -26,4 +18,5 @@ export interface ITeam {
   image: string;
   country: string;
   city: string;
+  biography?: string;
 }

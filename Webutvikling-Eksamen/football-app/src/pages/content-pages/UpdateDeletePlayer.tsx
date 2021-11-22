@@ -1,11 +1,15 @@
 import React, { ChangeEvent, useState } from "react";
+import { useParams } from "react-router";
+import TeamDataList from "../../components/new-player/TeamDataList";
+import TeamIconDataList from "../../components/new-player/TeamIconDataList";
 import { IPlayer } from "../../interfaces/Interfaces";
 import { playerService } from "../../services/playerService";
-import TeamDataList from "./TeamDataList";
-import TeamIconDataList from "./TeamIconDataList";
 
-const PlayerForm = () => {
+const UpdateDeletePlayer = () => {
+  const { id } = useParams();
+
   const [newPlayer, setNewPlayer] = useState<IPlayer>({
+    id: id,
     name: "",
     image: "",
     team: "",
@@ -15,11 +19,13 @@ const PlayerForm = () => {
     biography: "",
   });
   const [newImage, setNewImage] = useState<File>();
+
   const [newBiography, setNewBiography] = useState("");
 
   const handleChange = (
     event: ChangeEvent<HTMLInputElement & HTMLTextAreaElement>
   ) => {
+    event.preventDefault();
     let { name } = event.target;
     switch (name) {
       case "name":
@@ -58,18 +64,22 @@ const PlayerForm = () => {
     }
   };
 
-  const postNewPlayer = () => {
+  const updatePlayer = () => {
     console.log(newPlayer);
     console.log(newImage);
-    playerService.postPlayer(newPlayer, newImage as File);
+    playerService.updatePlayerById(id!, newPlayer, newImage as File);
+  };
+
+  const deletePlayer = () => {
+    playerService.deletePlayerById(id!);
   };
 
   return (
     <div style={{ margin: 100 }} className="container-flex border border-dark">
       <h3 style={{ textAlign: "center", marginBottom: 20, marginTop: 15 }}>
-        Player Form
+        Delete Or Update Player
       </h3>
-      <form onSubmit={postNewPlayer}>
+      <form onSubmit={updatePlayer}>
         <div className="row">
           <div
             style={{
@@ -123,7 +133,6 @@ const PlayerForm = () => {
               list="teams"
               style={{ width: 300 }}
               placeholder="Team"
-              onKeyDown={(e) => e.preventDefault()}
             />
             <TeamDataList />
           </div>
@@ -143,7 +152,6 @@ const PlayerForm = () => {
               list="teamIcons"
               style={{ width: 300 }}
               placeholder="Team Icon"
-              onKeyDown={(e) => e.preventDefault()}
             />
             <TeamIconDataList />
           </div>
@@ -202,9 +210,9 @@ const PlayerForm = () => {
         </div>
         <button
           style={{
-            display: "block",
-            marginLeft: "auto",
-            marginRight: "auto",
+            display: "inline-block",
+            marginLeft: 100,
+
             marginTop: 35,
             marginBottom: 15,
             borderRadius: 15,
@@ -217,9 +225,29 @@ const PlayerForm = () => {
         >
           Save
         </button>
+        <button
+          style={{
+            display: "inline-block",
+            marginLeft: 60,
+            marginTop: 35,
+            marginBottom: 15,
+            borderRadius: 15,
+            borderColor: "#3a043f",
+            backgroundColor: "#3a043f",
+            color: "#fff",
+            width: 70,
+          }}
+          onClick={() => {
+            if (window.confirm("Are you sure you want to delete player")) {
+              deletePlayer();
+            }
+          }}
+        >
+          Delete
+        </button>
       </form>
     </div>
   );
 };
 
-export default PlayerForm;
+export default UpdateDeletePlayer;

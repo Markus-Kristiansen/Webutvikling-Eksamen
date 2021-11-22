@@ -8,5 +8,6 @@ namespace FootballApi.Interfaces
         string Country { get; set; }
         string City { get; set; }
         string Image { get; set; }
+        string Biography { get; set; }
     }
 }

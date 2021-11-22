@@ -34,9 +34,9 @@ namespace FootballApi.Services
             return result.FirstOrDefault();
         }
 
-        public Player getPlayerByName(string name)
+        public Player getPlayerById(string id)
         {
-            var result = _players.Find(player => player.Name == name);
+            var result = _players.Find<Player>(player => player.Id == id);
 
             return result.FirstOrDefault();
         }
@@ -51,6 +51,11 @@ namespace FootballApi.Services
         public void DeletePlayer(string id)
         {
             _players.DeleteOne(delete => delete.Id == id);
+        }
+
+        public void UpdatePlayer(Player playerIn)
+        {
+            _players.ReplaceOne(player => player.Id == playerIn.Id, playerIn);
         }
     }
 }

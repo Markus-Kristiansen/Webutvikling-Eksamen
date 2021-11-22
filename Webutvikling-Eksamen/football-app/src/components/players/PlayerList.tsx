@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FC, useContext, useState } from "react";
-import { Button, Col, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { PlayerContext } from "../../contexts/player/PlayerContext";
 import { IPlayer } from "../../interfaces/Interfaces";

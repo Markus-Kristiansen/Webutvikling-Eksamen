@@ -16,8 +16,7 @@ const TeamImage: FC<Props> = ({ image }) => {
     >
       <img
         src={`https://localhost:5001/images/image/${image}`}
-        height="250px"
-        style={{ maxHeight: "70%" }}
+        height="210px"
         alt="teams-image"
       />
     </div>

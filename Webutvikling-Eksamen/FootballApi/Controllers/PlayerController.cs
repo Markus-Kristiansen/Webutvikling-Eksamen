@@ -52,5 +52,19 @@ namespace FootballApi.Controllers
             _playerService.DeletePlayer(id);
             return NoContent();
         }
+
+        [HttpPut("{id}")]
+        public IActionResult Update(string id, Player playerIn)
+        {
+            var player = _playerService.getPlayerById(id);
+
+            if (player == null)
+            {
+                return NotFound();
+            }
+
+            _playerService.UpdatePlayer(playerIn);
+            return NoContent();
+        }
     }
 }

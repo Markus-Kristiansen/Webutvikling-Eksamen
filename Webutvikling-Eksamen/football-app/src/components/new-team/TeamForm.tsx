@@ -1,21 +1,16 @@
 import React, { ChangeEvent, useState } from "react";
-import { IPlayer } from "../../interfaces/Interfaces";
-import { playerService } from "../../services/playerService";
-import TeamDataList from "./TeamDataList";
-import TeamIconDataList from "./TeamIconDataList";
+import { ITeam } from "../../interfaces/Interfaces";
+import { teamService } from "../../services/teamService";
 
-const PlayerForm = () => {
-  const [newPlayer, setNewPlayer] = useState<IPlayer>({
+const TeamForm = () => {
+  const [newTeam, setNewTeam] = useState<ITeam>({
     name: "",
     image: "",
-    team: "",
-    teamIcon: "",
-    age: 0,
-    nationality: "",
-    biography: "",
+    est: 0,
+    country: "",
+    city: "",
   });
   const [newImage, setNewImage] = useState<File>();
-  const [newBiography, setNewBiography] = useState("");
 
   const handleChange = (
     event: ChangeEvent<HTMLInputElement & HTMLTextAreaElement>
@@ -24,44 +19,35 @@ const PlayerForm = () => {
     switch (name) {
       case "name":
         let name = event.target.value;
-        setNewPlayer({ ...newPlayer, name: name });
+        setNewTeam({ ...newTeam, name: name });
         break;
-      case "age":
-        let age = event.target.value;
-        setNewPlayer({ ...newPlayer, age: parseInt(age) });
+      case "est":
+        let est = event.target.value;
+        setNewTeam({ ...newTeam, est: parseInt(est) });
         break;
-      case "team":
-        let team = event.target.value;
-        setNewPlayer({ ...newPlayer, team: team });
+      case "country":
+        let country = event.target.value;
+        setNewTeam({ ...newTeam, country: country });
         break;
-      case "teamIcon":
-        let teamIcon = event.target.value;
-        setNewPlayer({ ...newPlayer, teamIcon: teamIcon });
-        break;
-      case "nationality":
-        let nationality = event.target.value;
-        setNewPlayer({ ...newPlayer, nationality: nationality });
-        break;
-      case "biography":
-        let biography = event.target.value;
-        setNewBiography(biography);
-        setNewPlayer({ ...newPlayer, biography: newBiography });
+      case "city":
+        let city = event.target.value;
+        setNewTeam({ ...newTeam, city: city });
         break;
       case "image":
         let { files } = event.target;
         if (files) {
           console.log(files[0]);
-          setNewPlayer({ ...newPlayer, image: files[0].name });
+          setNewTeam({ ...newTeam, image: files[0].name });
           setNewImage(files[0]);
         }
         break;
     }
   };
 
-  const postNewPlayer = () => {
-    console.log(newPlayer);
+  const postNewTeam = () => {
+    console.log(newTeam);
     console.log(newImage);
-    playerService.postPlayer(newPlayer, newImage as File);
+    teamService.postTeam(newTeam, newImage as File);
   };
 
   return (
@@ -69,7 +55,7 @@ const PlayerForm = () => {
       <h3 style={{ textAlign: "center", marginBottom: 20, marginTop: 15 }}>
         Player Form
       </h3>
-      <form onSubmit={postNewPlayer}>
+      <form onSubmit={postNewTeam}>
         <div className="row">
           <div
             style={{
@@ -99,12 +85,11 @@ const PlayerForm = () => {
           >
             <input
               onChange={handleChange}
-              name="age"
+              name="est"
               type="number"
+              min="1880"
               style={{ width: 300 }}
-              placeholder="Age"
-              max="50"
-              min="15"
+              placeholder="Established 1892..."
             />
           </div>
           <div
@@ -118,14 +103,11 @@ const PlayerForm = () => {
           >
             <input
               onChange={handleChange}
-              name="team"
+              name="country"
               type="text"
-              list="teams"
               style={{ width: 300 }}
-              placeholder="Team"
-              onKeyDown={(e) => e.preventDefault()}
+              placeholder="Country"
             />
-            <TeamDataList />
           </div>
           <div
             style={{
@@ -138,46 +120,10 @@ const PlayerForm = () => {
           >
             <input
               onChange={handleChange}
-              name="teamIcon"
-              type="text"
-              list="teamIcons"
-              style={{ width: 300 }}
-              placeholder="Team Icon"
-              onKeyDown={(e) => e.preventDefault()}
-            />
-            <TeamIconDataList />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              marginTop: 5,
-              marginBottom: 5,
-            }}
-            className="col-12"
-          >
-            <input
-              onChange={handleChange}
-              name="nationality"
+              name="city"
               type="text"
               style={{ width: 300 }}
-              placeholder="Nationality"
-            />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              marginTop: 5,
-              marginBottom: 5,
-            }}
-            className="col-12"
-          >
-            <textarea
-              onChange={handleChange}
-              name="biography"
-              style={{ width: 300 }}
-              placeholder="Biography"
+              placeholder="City"
             />
           </div>
           <div
@@ -222,4 +168,4 @@ const PlayerForm = () => {
   );
 };
 
-export default PlayerForm;
+export default TeamForm;

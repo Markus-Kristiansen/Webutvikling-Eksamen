@@ -1,17 +1,18 @@
 import React, { ChangeEvent, useState } from "react";
-import { IPlayer } from "../../interfaces/Interfaces";
-import { playerService } from "../../services/playerService";
-import TeamDataList from "./TeamDataList";
-import TeamIconDataList from "./TeamIconDataList";
+import { useParams } from "react-router-dom";
+import { ITeam } from "../../interfaces/Interfaces";
+import { teamService } from "../../services/teamService";
 
-const PlayerForm = () => {
-  const [newPlayer, setNewPlayer] = useState<IPlayer>({
+const UpdateDeleteTeam = () => {
+  const { id } = useParams();
+
+  const [newTeam, setNewTeam] = useState<ITeam>({
+    id: id,
     name: "",
     image: "",
-    team: "",
-    teamIcon: "",
-    age: 0,
-    nationality: "",
+    est: 0,
+    city: "",
+    country: "",
     biography: "",
   });
   const [newImage, setNewImage] = useState<File>();
@@ -20,56 +21,57 @@ const PlayerForm = () => {
   const handleChange = (
     event: ChangeEvent<HTMLInputElement & HTMLTextAreaElement>
   ) => {
+    event.preventDefault();
     let { name } = event.target;
     switch (name) {
       case "name":
         let name = event.target.value;
-        setNewPlayer({ ...newPlayer, name: name });
+        setNewTeam({ ...newTeam, name: name });
         break;
-      case "age":
-        let age = event.target.value;
-        setNewPlayer({ ...newPlayer, age: parseInt(age) });
+      case "est":
+        let est = event.target.value;
+        setNewTeam({ ...newTeam, est: parseInt(est) });
         break;
-      case "team":
-        let team = event.target.value;
-        setNewPlayer({ ...newPlayer, team: team });
+      case "city":
+        let city = event.target.value;
+        setNewTeam({ ...newTeam, city: city });
         break;
-      case "teamIcon":
-        let teamIcon = event.target.value;
-        setNewPlayer({ ...newPlayer, teamIcon: teamIcon });
-        break;
-      case "nationality":
-        let nationality = event.target.value;
-        setNewPlayer({ ...newPlayer, nationality: nationality });
+      case "country":
+        let country = event.target.value;
+        setNewTeam({ ...newTeam, country: country });
         break;
       case "biography":
         let biography = event.target.value;
         setNewBiography(biography);
-        setNewPlayer({ ...newPlayer, biography: newBiography });
+        setNewTeam({ ...newTeam, biography: newBiography });
         break;
       case "image":
         let { files } = event.target;
         if (files) {
           console.log(files[0]);
-          setNewPlayer({ ...newPlayer, image: files[0].name });
+          setNewTeam({ ...newTeam, image: files[0].name });
           setNewImage(files[0]);
         }
         break;
     }
   };
 
-  const postNewPlayer = () => {
-    console.log(newPlayer);
+  const updateTeam = () => {
+    console.log(newTeam);
     console.log(newImage);
-    playerService.postPlayer(newPlayer, newImage as File);
+    teamService.updateTeamById(id!, newTeam, newImage as File);
+  };
+
+  const deleteTeam = () => {
+    teamService.deleteTeamById(id!);
   };
 
   return (
     <div style={{ margin: 100 }} className="container-flex border border-dark">
       <h3 style={{ textAlign: "center", marginBottom: 20, marginTop: 15 }}>
-        Player Form
+        Delete Or Update Team
       </h3>
-      <form onSubmit={postNewPlayer}>
+      <form onSubmit={updateTeam}>
         <div className="row">
           <div
             style={{
@@ -99,12 +101,11 @@ const PlayerForm = () => {
           >
             <input
               onChange={handleChange}
-              name="age"
+              name="est"
               type="number"
               style={{ width: 300 }}
-              placeholder="Age"
-              max="50"
-              min="15"
+              min="1880"
+              placeholder="Established 1890..."
             />
           </div>
           <div
@@ -118,14 +119,11 @@ const PlayerForm = () => {
           >
             <input
               onChange={handleChange}
-              name="team"
+              name="country"
               type="text"
-              list="teams"
               style={{ width: 300 }}
-              placeholder="Team"
-              onKeyDown={(e) => e.preventDefault()}
+              placeholder="Country"
             />
-            <TeamDataList />
           </div>
           <div
             style={{
@@ -138,30 +136,10 @@ const PlayerForm = () => {
           >
             <input
               onChange={handleChange}
-              name="teamIcon"
-              type="text"
-              list="teamIcons"
-              style={{ width: 300 }}
-              placeholder="Team Icon"
-              onKeyDown={(e) => e.preventDefault()}
-            />
-            <TeamIconDataList />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              marginTop: 5,
-              marginBottom: 5,
-            }}
-            className="col-12"
-          >
-            <input
-              onChange={handleChange}
-              name="nationality"
+              name="city"
               type="text"
               style={{ width: 300 }}
-              placeholder="Nationality"
+              placeholder="City"
             />
           </div>
           <div
@@ -202,9 +180,9 @@ const PlayerForm = () => {
         </div>
         <button
           style={{
-            display: "block",
-            marginLeft: "auto",
-            marginRight: "auto",
+            display: "inline-block",
+            marginLeft: 100,
+
             marginTop: 35,
             marginBottom: 15,
             borderRadius: 15,
@@ -217,9 +195,29 @@ const PlayerForm = () => {
         >
           Save
         </button>
+        <button
+          style={{
+            display: "inline-block",
+            marginLeft: 60,
+            marginTop: 35,
+            marginBottom: 15,
+            borderRadius: 15,
+            borderColor: "#3a043f",
+            backgroundColor: "#3a043f",
+            color: "#fff",
+            width: 70,
+          }}
+          onClick={() => {
+            if (window.confirm("Are you sure you want to delete team")) {
+              deleteTeam();
+            }
+          }}
+        >
+          Delete
+        </button>
       </form>
     </div>
   );
 };
 
-export default PlayerForm;
+export default UpdateDeleteTeam;

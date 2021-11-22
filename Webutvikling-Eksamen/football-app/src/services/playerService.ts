@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IOnePlayer, IPlayer } from "../interfaces/Interfaces";
+import { IPlayer } from "../interfaces/Interfaces";
 
 
 export const playerService = (function() {
@@ -14,10 +14,6 @@ export const playerService = (function() {
         return res.data as IPlayer[];
     };
 
-    const getAllPlayersOne = async () => {
-        const res = await axios.get("https://localhost:5001/player");
-        return res.data as IOnePlayer[];
-    };
 
     // Getting a specific player
     const getPlayerById = async (id: string) => {
@@ -28,6 +24,18 @@ export const playerService = (function() {
     const deletePlayerById = (id: string) => {
         axios.delete(`https://localhost:5001/player/${id}`);
     };
+
+    const updatePlayerById = (id:string, newPlayer: IPlayer, image: File) => {
+        let formData = new FormData();
+        formData.append( "file", image );
+        axios.put(`https://localhost:5001/player/${id}`, newPlayer)
+        axios({
+            url: urlToPlayerImageUploadController,
+            method: "POST",
+            data: formData,
+            headers: { "Content-Type": "multipart/form-data" }
+        })
+    }
 
     const postPlayer = ( newPlayer: IPlayer, image: File ) => {
         let formData = new FormData();
@@ -42,6 +50,6 @@ export const playerService = (function() {
     }
 
 
-    return { getAllPlayers, getAllPlayersOne, getPlayerById, deletePlayerById, postPlayer }
+    return { updatePlayerById, getAllPlayers, getPlayerById, deletePlayerById, postPlayer }
 
 }())

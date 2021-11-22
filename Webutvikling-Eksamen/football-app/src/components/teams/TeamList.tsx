@@ -1,5 +1,6 @@
-import React, { ChangeEvent, FC, useContext, useState } from "react";
+import { ChangeEvent, FC, useContext, useState } from "react";
 import { Col, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { TeamContext } from "../../contexts/team/TeamContext";
 import { ITeam } from "../../interfaces/Interfaces";
 import { TeamContextType } from "../../types/TeamContextType";
@@ -38,7 +39,27 @@ const TeamList: FC = () => {
   return (
     <Row style={{ backgroundColor: "#f5f5f5" }}>
       <div style={{ display: "flex", marginBottom: 20 }}>
-        <SearchBar search={search} placeholder="team" />
+        <SearchBar search={search} placeholder="player" />
+        <Link to="/new-team" style={{ textDecoration: "none" }}>
+          <div
+            style={{
+              backgroundColor: "#3a043f",
+              color: "white",
+              width: 50,
+              height: 50,
+              fontSize: 40,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "end",
+              marginRight: 10,
+              marginTop: 10,
+              borderRadius: 15,
+              textAlign: "center",
+            }}
+          >
+            +
+          </div>
+        </Link>
       </div>
       {searchTeams()}
     </Row>
